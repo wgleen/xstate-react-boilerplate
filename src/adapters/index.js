@@ -1,2 +1,1 @@
-export * as reviews from './reviews'
-export * as movies from './movies'
+export * as resources from './resources'
