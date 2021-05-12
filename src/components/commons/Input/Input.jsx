@@ -1,18 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Controller } from 'react-hook-form'
-import { Input as MaterialInput } from '@material-ui/core/'
+import MaterialInput from '@material-ui/core/TextField'
 
 function Input ({
   control,
   name,
-  ...props
+  ...rest
 }) {
   return (
     <Controller
       control={control}
       name={name}
-      render={({ field }) => <MaterialInput {...props} {...field} />}
+      render={({ field }) => (
+        <MaterialInput
+          {...rest}
+          {...field}
+          fullWidth
+          variant="outlined"
+        />
+      )}
     />
   )
 }

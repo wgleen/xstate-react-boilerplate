@@ -9,7 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120
+    minWidth: 180
   }
 }))
 
@@ -32,12 +32,13 @@ function ReviewsCreateSelectUniverse ({
   }, [onChange])
 
   return (
-    <FormControl className={classes.formControl}>
+    <FormControl variant="outlined" className={classes.formControl}>
       <InputLabel id={id}>{label}</InputLabel>
 
       <Select
         id={id}
         labelId={id}
+        label={label}
         onChange={handleChange}
       >
         {options.map((option) => (

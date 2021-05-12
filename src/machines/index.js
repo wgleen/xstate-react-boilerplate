@@ -5,4 +5,4 @@ inspect({
   iframe: false
 })
 
-export { reviewsMachine } from './reviews'
+export * as reviews from './reviews'

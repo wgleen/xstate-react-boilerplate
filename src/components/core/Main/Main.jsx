@@ -1,27 +1,34 @@
-import React, { useCallback } from 'react'
-import { useMachine } from '@xstate/react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import * as machines from '../../../machines'
-import Routes from '../Routes/Routes'
+import * as routerMachine from '../../../lib/routerMachine'
+import * as config from '../../../config'
+import { MainProvider } from './mainContext'
 
-function Main () {
-  const [state, send] = useMachine(machines.reviewsMachine, { devTools: true })
-
-  const onReviewCreate = useCallback(() => send('ON_CREATE_REVIEWS'))
-  const onSelectMovie = useCallback((movie) => send('ON_SELECT_MOVIE', { value: movie }))
-  const onSelectUniverse = useCallback((universe) => send('ON_SELECT_UNIVERSE', { value: universe }))
-  const onSubmit = useCallback((review) => send('ON_SUBMIT_REVIEW', { value: review }))
-  const onBack = useCallback(() => send('ON_BACK'))
+function Main ({ children }) {
+  const [state, send, service] = routerMachine.useRouterMachine(
+    machines.reviews.reviewsConfig,
+    machines.reviews.reviewsOptions,
+    config.routes,
+    { devTools: true }
+  )
 
   return (
-    <Routes
-      onReviewCreate={onReviewCreate}
-      onSelectMovie={onSelectMovie}
-      onSelectUniverse={onSelectUniverse}
-      onSubmit={onSubmit}
-      onBack={onBack}
-      state={state}
-    />
+    <MainProvider value={{
+      service,
+      send,
+      matches: state.matches
+    }}>
+      {children}
+    </MainProvider>
   )
+}
+
+Main.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.node
+  ])
 }
 
 export default Main

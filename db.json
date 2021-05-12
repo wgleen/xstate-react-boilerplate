@@ -1,0 +1,51 @@
+{
+  "reviews": [
+    {
+      "id": 1,
+      "review_content": "I hate this movie!",
+      "review_movie": {
+        "id": 1,
+        "title": "Batman vs Superman",
+        "universe": "dc"
+      }
+    },
+    {
+      "id": 2,
+      "review_content": "Awesome movie!",
+      "review_movie": {
+        "id": 2,
+        "title": "Avengers Endgame",
+        "universe": "marvel"
+      }
+    },
+    {
+      "review_movie": {
+        "id": 1,
+        "title": "Batman vs Superman",
+        "universe": "marvel"
+      },
+      "id": 3
+    },
+    {
+      "review_content": "I hate this movie! great",
+      "review_movie": {
+        "id": 1,
+        "title": "Batman vs Superman",
+        "universe": "marvel"
+      },
+      "id": 4
+    }
+  ],
+  "movies": [
+    {
+      "id": 1,
+      "movie_title": "Batman vs Superman",
+      "movie_universe": "dc"
+    },
+    {
+      "id": 2,
+      "movie_title": "Avengers Endgame",
+      "movie_universe": "marvel"
+    }
+  ]
+}

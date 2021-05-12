@@ -1,8 +1,7 @@
-import { Machine } from 'xstate'
-import * as config from '../config'
+import { Machine, assign } from 'xstate'
 import * as domain from '../domain'
 
-export const reviewsSchema = {
+export const reviewsConfig = {
   id: 'ReviewsMachine',
   initial: 'fetchingReviews',
   context: {
@@ -24,9 +23,6 @@ export const reviewsSchema = {
       }
     },
     reviews: {
-      meta: {
-        path: config.routes.reviewsIndex.path
-      },
       on: {
         ON_CREATE_REVIEWS: {
           target: 'fetchingMovies'
@@ -39,14 +35,11 @@ export const reviewsSchema = {
         src: 'fetchMovies',
         onDone: {
           target: 'movies',
-          actions: 'receiveMovies'
+          actions: ['receiveMovies']
         }
       }
     },
     movies: {
-      meta: {
-        path: config.routes.reviewsCreateSelectMovie.path
-      },
       on: {
         ON_SELECT_MOVIE: {
           target: 'universe',
@@ -55,9 +48,6 @@ export const reviewsSchema = {
       }
     },
     universe: {
-      meta: {
-        path: config.routes.reviewsCreateSelectUniverse.path
-      },
       on: {
         ON_SELECT_UNIVERSE: [
           {
@@ -73,9 +63,6 @@ export const reviewsSchema = {
       }
     },
     goodReview: {
-      meta: {
-        path: config.routes.reviewsCreateGood.path
-      },
       on: {
         ON_SUBMIT_REVIEW: {
           target: 'submitingReview',
@@ -84,9 +71,6 @@ export const reviewsSchema = {
       }
     },
     badReview: {
-      meta: {
-        path: config.routes.reviewsCreateBad.path
-      },
       on: {
         ON_SUBMIT_REVIEW: {
           target: 'submitingReview',
@@ -104,9 +88,6 @@ export const reviewsSchema = {
       }
     },
     thanks: {
-      meta: {
-        path: config.routes.reviewsCreateThanks.path
-      },
       on: {
         ON_BACK: {
           target: 'fetchingReviews',
@@ -117,23 +98,42 @@ export const reviewsSchema = {
   }
 }
 
-export const reviewsConfig = {
+export const reviewsOptions = {
   guards: {
-    isGoodReview: domain.resources.reviews.isGoodReview
+    isGoodReview: (ctx, e) => (
+      domain.resources.reviews.isGoodReview(ctx.movie, e.value)
+    )
   },
   actions: {
-    receiveUniverse: domain.resources.reviews.receiveUniverse,
-    receiveMovies: domain.resources.reviews.receiveMovies,
-    receiveMovie: domain.resources.reviews.receiveMovie,
-    receiveReviews: domain.resources.reviews.receiveReviews,
-    receiveReview: domain.resources.reviews.receiveReview,
-    clearReview: domain.resources.reviews.clearReview
+    receiveUniverse: assign({ universe: (_, e) => e.value }),
+    receiveMovies: assign({ movies: (_, e) => e.data }),
+    receiveMovie: assign({ movie: (_, e) => e.value }),
+    receiveReviews: assign({ reviews: (_, e) => e.data }),
+    receiveReview: assign({ review: (_, e) => e.value }),
+    clearReview: assign({
+      review: null,
+      movies: [],
+      movie: null,
+      universe: null
+    })
   },
   services: {
     fetchReviews: domain.resources.reviews.fetchReviews,
     fetchMovies: domain.resources.movies.fetchMovies,
-    submitReview: domain.resources.reviews.submitReview
+    submitReview: (ctx) => {
+      const {
+        review,
+        movie,
+        universe
+      } = ctx
+
+      return domain.resources.reviews.submitReview({
+        review,
+        movie,
+        universe
+      })
+    }
   }
 }
 
-export const reviewsMachine = Machine(reviewsSchema, reviewsConfig)
+export const reviewsMachine = Machine(reviewsConfig, reviewsOptions)

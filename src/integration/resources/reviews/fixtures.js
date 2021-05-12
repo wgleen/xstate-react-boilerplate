@@ -3,8 +3,8 @@ export const reviewsListSuccess = {
   data: [
     {
       id: 1,
-      content: 'I hate this movie!',
-      movies: {
+      review_content: 'I hate this movie!',
+      review_movie: {
         id: 1,
         title: 'Batman vs Superman',
         universe: 'dc'
@@ -12,8 +12,8 @@ export const reviewsListSuccess = {
     },
     {
       id: 2,
-      content: 'Awesome movie!',
-      movies: {
+      review_content: 'Awesome movie!',
+      review_movie: {
         id: 2,
         title: 'Avengers Endgame',
         universe: 'marvel'

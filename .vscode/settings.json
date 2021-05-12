@@ -1,0 +1,3 @@
+{
+    "jestrunner.jestCommand": "yarn run test --watchAll=false"
+}
