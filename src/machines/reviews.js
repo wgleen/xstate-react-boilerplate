@@ -35,7 +35,7 @@ export const reviewsConfig = {
         src: 'fetchMovies',
         onDone: {
           target: 'movies',
-          actions: ['receiveMovies']
+          actions: 'receiveMovies'
         }
       }
     },
@@ -100,9 +100,7 @@ export const reviewsConfig = {
 
 export const reviewsOptions = {
   guards: {
-    isGoodReview: (ctx, e) => (
-      domain.resources.reviews.isGoodReview(ctx.movie, e.value)
-    )
+    isGoodReview: (ctx, e) => domain.resources.reviews.isGoodReview(ctx.movie, e.value)
   },
   actions: {
     receiveUniverse: assign({ universe: (_, e) => e.value }),
@@ -118,8 +116,8 @@ export const reviewsOptions = {
     })
   },
   services: {
-    fetchReviews: domain.resources.reviews.fetchReviews,
-    fetchMovies: domain.resources.movies.fetchMovies,
+    fetchReviews: () => domain.resources.reviews.fetchReviews,
+    fetchMovies: () => domain.resources.movies.fetchMovies,
     submitReview: (ctx) => {
       const {
         review,

@@ -1,5 +1,5 @@
-import client from '../../client'
-import * as adapters from '../../../adapters'
+import client from '../client'
+import * as adapters from '../../adapters'
 
 export const fetchMovies = async () => {
   try {

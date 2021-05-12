@@ -1,6 +1,6 @@
 import nock from 'nock'
-import * as config from '../../../config'
-import * as requests from './requests'
+import * as config from '../../config'
+import * as requests from './reviews'
 
 describe('integrations/reviews', () => {
   let scope

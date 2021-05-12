@@ -3,7 +3,7 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom'
-
+import 'jest-extended'
 import axios from 'axios'
 
 axios.defaults.adapter = require('axios/lib/adapters/http')

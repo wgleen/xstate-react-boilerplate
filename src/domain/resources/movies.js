@@ -1,3 +1,3 @@
 import * as integration from '../../integration'
 
-export const fetchMovies = () => integration.resources.movies.requests.fetchMovies()
+export const fetchMovies = () => integration.resources.movies.fetchMovies()
