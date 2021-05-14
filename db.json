@@ -17,23 +17,6 @@
         "title": "Avengers Endgame",
         "universe": "marvel"
       }
-    },
-    {
-      "review_movie": {
-        "id": 1,
-        "title": "Batman vs Superman",
-        "universe": "marvel"
-      },
-      "id": 3
-    },
-    {
-      "review_content": "I hate this movie! great",
-      "review_movie": {
-        "id": 1,
-        "title": "Batman vs Superman",
-        "universe": "marvel"
-      },
-      "id": 4
     }
   ],
   "movies": [

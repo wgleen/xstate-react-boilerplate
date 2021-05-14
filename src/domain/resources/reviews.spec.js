@@ -4,23 +4,19 @@ import * as reviews from './reviews'
 describe('domain/reviews', () => {
   describe('isGoodReview()', () => {
     it('should return false when movie.universe is not equal to universe', () => {
-      const movie = {
-        universe: 'A movie universe'
-      }
+      const movieUniverse = 'A movie universe'
 
       const universe = 'A universe'
 
-      expect(reviews.isGoodReview(movie, universe)).toBeFalse()
+      expect(reviews.isGoodReview(movieUniverse, universe)).toBeFalse()
     })
 
     it('should return true when movie.universe is equal to universe', () => {
-      const movie = {
-        universe: 'A movie universe'
-      }
+      const movieUniverse = 'A movie universe'
 
       const universe = 'A movie universe'
 
-      expect(reviews.isGoodReview(movie, universe)).toBeTrue()
+      expect(reviews.isGoodReview(movieUniverse, universe)).toBeTrue()
     })
   })
 
