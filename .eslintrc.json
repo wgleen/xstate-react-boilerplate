@@ -13,7 +13,8 @@
     "sourceType": "module"
   },
   "globals": {
-    "createTestWrapper": true
+    "createTestWrapper": true,
+    "cy": true
   },
   "plugins": ["react"],
   "rules": {}

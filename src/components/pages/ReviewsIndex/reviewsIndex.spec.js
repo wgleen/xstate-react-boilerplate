@@ -43,6 +43,7 @@ describe('components/pages/ReviewsIndex', () => {
               </ThemeProvider>
             </WrapperMachine>
           )
+
           return path.test(rendered)
         })
       })

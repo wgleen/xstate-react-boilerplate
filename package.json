@@ -29,6 +29,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:integration": "cypress open",
     "dev:api": "json-server --watch db.json --p 5000",
     "eject": "react-scripts eject"
   },
@@ -51,7 +52,9 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/cypress": "^7.0.6",
     "@xstate/test": "^0.4.2",
+    "cypress": "^7.3.0",
     "eslint": "^7.24.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
