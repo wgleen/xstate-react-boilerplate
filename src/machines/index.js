@@ -1,8 +1,8 @@
-import { inspect } from '@xstate/inspect'
+// import { inspect } from '@xstate/inspect'
 
-inspect({
-  url: 'https://statecharts.io/inspect',
-  iframe: false
-})
+// inspect({
+//   url: 'https://statecharts.io/inspect',
+//   iframe: false
+// })
 
 export * as reviews from './reviews'

@@ -1,26 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import * as machines from '../../../machines'
-import * as routerMachine from '../../../lib/routerMachine'
-import * as config from '../../../config'
-import { MainProvider } from './mainContext'
+import WrapperMachine from '../WrapperMachine/WrapperMachine'
 
-function Main ({ children }) {
-  const [state, send, service] = routerMachine.useRouterMachine(
-    machines.reviews.reviewsConfig,
-    machines.reviews.reviewsOptions,
-    config.routes,
-    { devTools: true }
-  )
-
+function Main ({
+  children
+}) {
   return (
-    <MainProvider value={{
-      service,
-      send,
-      matches: state.matches
-    }}>
+    <WrapperMachine machine={machines.reviews}>
       {children}
-    </MainProvider>
+    </WrapperMachine>
   )
 }
 

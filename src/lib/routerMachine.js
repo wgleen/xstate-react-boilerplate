@@ -1,10 +1,12 @@
-import history from 'history/browser'
+import { createBrowserHistory } from 'history'
 import { fromEventPattern } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { useMachine } from '@xstate/react'
 import merge from 'lodash/merge'
 import find from 'lodash/find'
 import { Machine } from 'xstate'
+
+const history = createBrowserHistory()
 
 export const getRouteByPathname = (path, routes) => {
   if (path === undefined) throw new Error('A path must be defined')

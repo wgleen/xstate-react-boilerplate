@@ -1,7 +1,7 @@
 import { Machine, assign } from 'xstate'
 import * as domain from '../domain'
 
-export const reviewsConfig = {
+export const config = {
   id: 'ReviewsMachine',
   initial: 'fetchingReviews',
   context: {
@@ -98,7 +98,7 @@ export const reviewsConfig = {
   }
 }
 
-export const reviewsOptions = {
+export const options = {
   guards: {
     isGoodReview: (ctx, e) => domain.resources.reviews.isGoodReview(ctx.movie, e.value)
   },
@@ -134,4 +134,4 @@ export const reviewsOptions = {
   }
 }
 
-export const reviewsMachine = Machine(reviewsConfig, reviewsOptions)
+export const reviewsMachine = Machine(config, options)
